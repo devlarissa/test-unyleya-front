@@ -1,0 +1,10 @@
+#main-page {
+  text-align: center;
+}
+
+#main-page img {
+  background-color: #282c34;
+  border-radius: 15px;
+  max-width: 100%;
+  width: 200px;
+}
