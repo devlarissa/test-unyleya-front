@@ -1,0 +1,31 @@
+#profile-page h1 {
+  text-align: center;
+}
+
+#profile-page form {
+  background-color: #664EBB;
+  box-shadow: 1px 1px 5px #4D3A88;
+  border-radius: 3px;
+  color: #fff;
+  margin: 0 auto;
+  padding: 15px 20px;
+  width: 360px;
+}
+
+#profile-page .form-group {
+  /*display: flex;*/
+  margin: 15px 0;
+}
+
+#profile-page label {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+
+#profile-page input {
+  padding: 10px;
+  width: 100%;
+}
+
+
