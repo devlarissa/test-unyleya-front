@@ -1,0 +1,48 @@
+.headerAutor{
+  display: flex;
+  background-color: #ffc0cb;
+  flex-direction: row;
+
+}
+#main-page {
+  text-align: center;
+}
+
+#main-page img {
+  background-color: #282c34;
+  border-radius: 15px;
+  max-width: 100%;
+  width: 200px;
+}
+
+.bodybook{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.cardbook{
+  min-width: 550px;
+  max-width: 550px;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-right: 2%;
+  flex-wrap: wrap;
+  border: solid 3px pink;
+  border-radius:2%;
+  box-shadow:-5px 0px 14px 0px rgba(50, 50, 50, 0.38);
+
+}
+@media only screen and (max-width: 500px){
+  .cardbook{
+    min-width: 310px;
+    max-width: 310px;
+    border: solid 3px pink;
+    border-radius:2%;
+    box-shadow:-5px 0px 14px 0px rgba(50, 50, 50, 0.38);
+  }
+}
+
+
