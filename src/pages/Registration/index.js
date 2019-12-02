@@ -1,6 +1,6 @@
 import React from "react";
 import _Page from "../_Page";
-import { Button, Card, Input, Icon, Avatar } from "antd";
+import { Card, Icon, Avatar } from "antd";
 import "./styles.css";
 import Logo from "../../assets/img/logobo.png";
 
@@ -28,3 +28,7 @@ class Registration extends _Page {
 }
 
 export default Registration;
+
+
+
+

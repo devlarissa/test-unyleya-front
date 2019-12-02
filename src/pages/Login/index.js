@@ -3,14 +3,14 @@ import _Page from "../_Page";
 import { Button, Card, Input, Icon, Avatar } from "antd";
 import "./styles.css";
 import Logo from "../../assets/img/logobo.png";
-import Link from "react-router-dom";
+
 
 class Login extends _Page {
   render() {
     return (
       <>
         <div className="body">
-         
+
           <Card className="card">
           <div className="header">
           <Avatar src={Logo} shape="square" style={{width:"30%", height:"30%"}}/>
