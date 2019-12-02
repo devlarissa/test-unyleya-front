@@ -1,0 +1,62 @@
+
+.bodycreate{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+}
+.headercreate{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    
+}
+
+.cardcreate{
+    width: 60%;
+    border: solid 5px pink;
+    border-radius:2% ;
+    -webkit-box-shadow:-5px 0px 14px 0px rgba(50, 50, 50, 0.38);
+    -moz-box-shadow:-5px 0px 14px 0px rgba(50, 50, 50, 0.38);
+    box-shadow:-5px 0px 14px 0px rgba(50, 50, 50, 0.38);
+    font-size: 100%;
+}
+@media only screen and (min-width: 800px){
+    .cardcreate{
+        font-size: 30px;
+    }
+}
+
+.inputcreate{
+    margin-top: 5%;
+
+}
+
+.buttoncreate{
+    width: 49%;
+    background-color: pink;
+
+}
+
+.divbuttoncreate{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 6%;
+    
+}
+@media only screen and (max-width: 550px){
+    .divbuttoncreate{
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    .buttoncreate{
+        width: 100%;
+        margin-top: 2%;
+        
+    }
+    .headercreate{
+        flex-direction: column;
+    }
+}
+

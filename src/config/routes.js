@@ -8,6 +8,12 @@ import Profile from '../pages/Profile';
 import NotFound from '../pages/Error/NotFound';
 import Login from '../pages/Login';
 import Registration from '../pages/Registration';
+import AutorList from '../pages/Autor';
+import AutorForm from '../pages/Autor/form';
+import PublisherForm from '../pages/Publisher/form';
+import PublisherList from '../pages/Publisher';
+import GenreList from '../pages/Genre';
+import GenreForm from '../pages/Genre/form';
 
 const PrivateRoute = (props) => (
   AuthService.isAuthenticated()
@@ -21,6 +27,15 @@ const Routes = () => (
       <Route exact path={'/'} component={Main}/>
       <Route path={'/login'} component={Login}/>
       <Route path={'/registration'} component={Registration}/>
+      <Route path={'/autor/:id'} component={AutorForm}/>
+      <Route path={'/autor'} component={AutorList}/>
+      <Route path={'/publisher/:id'} component={PublisherForm}/>
+      <Route path={'/publisher'} component={PublisherList}/>
+      <Route path={'/genre/:id'} component={GenreForm}/>
+      <Route path={'/genre'} component={GenreList}/>
+
+
+
 
       <PrivateRoute path={'/profile'} component={Profile}/>
 
