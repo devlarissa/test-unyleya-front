@@ -1,7 +1,8 @@
-.body{
+.bodyheader{
   display: flex;
-  background-color: pink;
+  background-color: #ffc0cb;
   flex-direction: row;
+  width: 100%;
 
 }
 

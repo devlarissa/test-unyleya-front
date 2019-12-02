@@ -1,7 +1,6 @@
-import {Component} from 'react';
+import { Component } from "react";
 
 class _Page extends Component {
-
   componentDidMount() {
     this._canUpdate = true;
   }
@@ -10,8 +9,8 @@ class _Page extends Component {
     this._canUpdate = false;
   }
 
-  getParam = (attr) => {
-    return (this.props.match ? (this.props.match.params || {}) : {})[attr];
+  getParam = attr => {
+    return (this.props.match ? this.props.match.params || {} : {})[attr];
   };
 
   update = (state = this.state) => {
@@ -19,11 +18,11 @@ class _Page extends Component {
   };
 
   loading = () => {
-    return this.update({loading: true});
+    return this.update({ loading: true });
   };
 
   loaded = () => {
-    return this.update({loading: false});
+    return this.update({ loading: false });
   };
 
   _handleInputChange = (e, target = this.state) => {
@@ -31,6 +30,15 @@ class _Page extends Component {
     return this.update();
   };
 
+  // funcao util para buscar os dados do model
+  getModel = async () => {
+    if (!+this.getParam("id")) {
+      return;
+    }
+    return this.service
+      .get(this.getParam("id"))
+      .then(async response => await this.update({ model: response.data }));
+  };
 }
 
 export default _Page;

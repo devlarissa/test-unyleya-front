@@ -1,23 +1,10 @@
 import React from "react";
 import "./style.css";
-import {PageHeader, Menu, Dropdown, Avatar, Button, Tag, Typography, Row, Descriptions} from "antd";
-import Logo from "../../assets/img/logobo.png"
+import { PageHeader } from "antd";
 
-function Header() {
-  const { Paragraph } = Typography;
-  return (
-    <div >
-     <PageHeader className="body"
-      ghost={false}
-      title="Booklist"
-      subTitle="Seu melhor gerenciador de livros!"
-      extra={[
-        <Button key="3">Operation</Button>,
-        <Button key="2">Operation</Button>,
-        <Button key="1">Primary</Button>,
-      ]}
-    />
-  </div>
-  );
+class Header extends React.Component {
+  render() {
+    return <PageHeader className="bodyheader" ghost={false} {...this.props} />;
+  }
 }
 export default Header;
