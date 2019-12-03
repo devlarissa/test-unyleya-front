@@ -9,28 +9,29 @@ import Iconbook from "../../assets/img/iconbook.png";
 import Iconpublisher from "../../assets/img/publishericon.png";
 
 class Main extends _Page {
+
   render() {
     return (
       <>
         <Header title="Booklist" />
         <div className="bodymain">
           <Tooltip placement="bottom" title="Gerenciar livros">
-            <Card className="cardmain">
+            <Card extra={<a href="/book">More</a>} className="cardmain">
               <Avatar src={Iconbook} size={100} shape="square" />
             </Card>
           </Tooltip>
           <Tooltip placement="bottom" title="Gerenciar editoras">
-            <Card className="cardmain">
+            <Card extra={<a href="/publisher">More</a>} className="cardmain">
               <Avatar src={Iconpublisher} size={100} shape="square" />
             </Card>
           </Tooltip>
           <Tooltip placement="bottom" title="Gerenciar autores">
-            <Card className="cardmain">
+            <Card extra={<a href="/autor">More</a>} className="cardmain">
               <Avatar src={Iconautor} size={100} shape="square" />
             </Card>
           </Tooltip>
           <Tooltip placement="bottom" title="Gerenciar generos literarios">
-            <Card className="cardmain">
+            <Card extra={<a href="/genre">More</a>}className="cardmain">
               <Avatar src={Icongenre} size={100} shape="square" />
             </Card>
           </Tooltip>
