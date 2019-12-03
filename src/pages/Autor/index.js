@@ -47,8 +47,12 @@ export default class AutorList extends _Page {
           <Button
             onClick={e => {
               e.preventDefault();
-              if (window.confirm("Deseja apagar esse registro? Registros vinculados a livros não será possivel apaga-los.")) {
-                AutorService.delete(autor.id_autor)
+              if (window.confirm("Deseja remover o registro? Caso o registro esteja vinculado em algum livro nao sera possivel a remoção")) {
+                AutorService.delete(autor.id_autor).then(response => {
+                  AutorService.getAll().then(response => {
+                    this.update({ autores: response.data });
+                  });
+                });
               }
             }}
           >

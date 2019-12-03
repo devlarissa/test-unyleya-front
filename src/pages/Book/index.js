@@ -62,11 +62,11 @@ export default class BookList extends _Page {
             onClick={e => {
               e.preventDefault();
               if (window.confirm("Deseja remover o registro?")) {
-                BookService.delete(book.id_book).then(
+                BookService.delete(book.id_book).then(response => {
                   BookService.getAll().then(response => {
-      this.update({ books: response.data })
-    })
-                )
+                    this.update({ books: response.data });
+                  });
+                });
               }
             }}
           >

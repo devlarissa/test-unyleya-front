@@ -40,9 +40,12 @@ export default class GenreList extends _Page {
           <Button
             onClick={e => {
               e.preventDefault();
-              if (window.confirm("Deseja apagar esse registro? Registros vinculados a livros não será possivel apaga-los.")) {
-                GenreService.delete(genre.id_genre)
-                GenreService.getAll()
+              if (window.confirm("Deseja remover o registro? Caso o registro esteja vinculado em algum livro nao sera possivel a remoção")) {
+                GenreService.delete(genre.id_genre).then(response => {
+                  GenreService.getAll().then(response => {
+                    this.update({ genres: response.data });
+                  });
+                });
               }
             }}
           >
