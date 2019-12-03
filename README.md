@@ -3,7 +3,9 @@ o esqueleto do projeto foi criado com o intuito de deixar o projeto mais modular
 
 ## Available Scripts
 
-Neste projeto voce precisa instalar o yarn, para carregar todas as dependencias. Na pasta clonada do projeto execute o
+Neste projeto voce precisa instalar o yarn, para carregar todas as dependencias.
+https://yarnpkg.com/pt-BR/docs/install#windows-stable instale o yarn na sua maquina de acordo com seu sistema operacional
+Na pasta clonada do projeto execute o
 comando: yarn install
 
 Em seguida, execute o comando: yarn start
@@ -15,6 +17,13 @@ Use [http://localhost:3000](http://localhost:3000) para visualizar a aplicação
 
 Projeto Back-end criado em PHP, usando a framework Laravel e o banco de dados MySql.
 Para o funcionamento da API/Banco de dados e necessario rodar um ambiente de desenvolvimento php, no caso nesse projeto foi usado o xampp (https://www.apachefriends.org/pt_br/index.html), ligando o apache e o MySql.
+
+Para instalação do laravel é necessario o composer
+instalar o composer na maquina, comando: composer install
+Instalando o laravel com o comando - composer global require laravel/installer
+ https://laravel.com/docs/6.x -> guia para instalação
+Inicei o xampp e de start nas opções Apache e MySql
+Para acesso direto ao banco de dados http://localhost/phpmyadmin
 Inicei o xampp e de start nas opções Apache e MySql
 Para acesso direto ao banco de dados http://localhost/phpmyadmin
 
