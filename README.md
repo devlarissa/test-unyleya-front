@@ -22,13 +22,14 @@ Para instalação do laravel é necessario o composer
 instalar o composer na maquina, comando: composer install
 Instalando o laravel com o comando - composer global require laravel/installer
  https://laravel.com/docs/6.x -> guia para instalação
-Inicei o xampp e de start nas opções Apache e MySql
-Para acesso direto ao banco de dados http://localhost/phpmyadmin
-Inicei o xampp e de start nas opções Apache e MySql
+
+Inicie o xampp e de start nas opções Apache e MySql
 Para acesso direto ao banco de dados http://localhost/phpmyadmin
 
 Na pasta clonada do back-end use o $php artisan, o comando para inciar o projeto em um serve é
 php artisan serve
+
+#OBSERVAÇÃO# Caso rode o laravel em portas diferentes, configurar no front a url base no arquivo api.js
 
 Após todos os passos a aplicação aberta no navegador http://localhost:3000 estara pronta para uso e comunicação com o banco de dados.
 
