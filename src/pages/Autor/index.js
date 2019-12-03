@@ -43,7 +43,19 @@ export default class AutorList extends _Page {
           <NavLink className="ant-btn" style={{margin:"1%"}} to={"/autor/" + autor.id_autor}>
             <span>Editar</span>
           </NavLink>
-          <Button style={{margin:"1%"}}>Remover</Button>
+
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              if (window.confirm("Deseja remover o registro?")) {
+                AutorService.delete(autor.id_autor).then(response => {
+                  this.update({ autors: response.data });
+                });
+              }
+            }}
+          >
+            Remover
+          </Button>
         </>
       )
     }

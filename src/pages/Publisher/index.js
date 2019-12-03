@@ -36,7 +36,19 @@ export default class PublisherList extends _Page {
           >
             <span>Editar</span>
           </NavLink>
-          <Button style={{margin:"1%"}}>Remover</Button>
+
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              if (window.confirm("Deseja remover o registro?")) {
+                PublisherService.delete(publisher.id_publisher).then(response => {
+                  this.update({ books: response.data });
+                });
+              }
+            }}
+          >
+            Remover
+          </Button>
         </>
       )
     }

@@ -36,7 +36,19 @@ export default class GenreList extends _Page {
           >
             <span>Editar</span>
           </NavLink>
-          <Button style={{margin:"1%"}}>Remover</Button>
+
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              if (window.confirm("Deseja remover o registro?")) {
+                GenreService.delete(genre.id_genre).then(response => {
+                  this.update({ genres: response.data });
+                });
+              }
+            }}
+          >
+            Remover
+          </Button>
         </>
       )
     }

@@ -1,14 +1,16 @@
 import React from "react";
-import {Table, Button} from "antd";
+import { Table, Button } from "antd";
 import _Page from "../_Page";
 import Content from "../../components/Content";
 import Header from "../../components/Header";
 import BookService from "../../services/BookService";
 import { NavLink } from "react-router-dom";
+import AutorService from "../../services/AutorService";
 
 export default class BookList extends _Page {
   state = {
-    books: []
+    books: [],
+    autor: {}
   };
 
   columns = [
@@ -19,8 +21,28 @@ export default class BookList extends _Page {
     },
     {
       title: "Nome",
-      dataIndex: "books_title",
-      key: "books_title"
+      dataIndex: "book_title",
+      key: "book_title"
+    },
+    {
+      title: "Ano de lançamento",
+      dataIndex: "release_year",
+      key: "release_year"
+    },
+    {
+      title: "Autor",
+      dataIndex: "id_autor",
+      key: "id_autor"
+    },
+    {
+      title: "Editora",
+      dataIndex: "id_publisher",
+      key: "id_publisher"
+    },
+    {
+      title: "Genero",
+      dataIndex: "id_genre",
+      key: "id_genre"
     },
     {
       title: "Action",
@@ -29,10 +51,26 @@ export default class BookList extends _Page {
       width: 100,
       render: book => (
         <>
-          <NavLink className="ant-btn" style={{margin:"1%"}}to={"/book/" + book.id_book}>
+          <NavLink
+            className="ant-btn"
+            style={{ margin: "1%" }}
+            to={"/book/" + book.id_book}
+          >
             <span>Editar</span>
           </NavLink>
-          <Button style={{margin:"1%"}}>Remover</Button>
+
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              if (window.confirm("Deseja remover o registro?")) {
+                BookService.delete(book.id_book).then(response => {
+                  this.update({ books: response.data });
+                });
+              }
+            }}
+          >
+            Remover
+          </Button>
         </>
       )
     }
@@ -43,14 +81,24 @@ export default class BookList extends _Page {
     BookService.getAll().then(response => {
       this.update({ books: response.data });
     });
+    AutorService.get(1).then(response => {
+      this.update({
+        autor: response.date
+      });
+    });
   }
 
   render() {
+    console.log(this.state.autor)
     return (
       <>
         <Header title="Livros" />
         <Content>
-          <NavLink className="ant-btn ant-btn-primary" style={{margin:"1%"}} to={"/book/0"}>
+          <NavLink
+            className="ant-btn ant-btn-primary"
+            style={{ margin: "1%" }}
+            to={"/book/0"}
+          >
             <span>Adicionar</span>
           </NavLink>
           <Table dataSource={this.state.books} columns={this.columns} />

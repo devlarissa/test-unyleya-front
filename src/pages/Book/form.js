@@ -1,11 +1,14 @@
 import React from "react";
-import {Input,notification,Form,Card,Button,Icon} from "antd";
+import {Input,Select,notification,Form,Card,Button,Icon} from "antd";
 import PropTypes from "prop-types";
 import Header from "../../components/Header";
 import _Page from "../_Page";
 import BookService from "../../services/BookService";
 import AutorService from "../../services/AutorService";
+import GenreService from "../../services/GenreService";
+import PublisherService from "../../services/PublisherService";
 
+const { Option } = Select;
 class BookForm extends _Page {
   static propTypes = {
     form: PropTypes.any.isRequired
@@ -14,16 +17,25 @@ class BookForm extends _Page {
   service = BookService;
   state = {
     model: {},
-    autores: []
+    autores:[],
+    generos:[],
+    editoras:[]
   };
 
   componentWillMount() {
     this.getModel();
   }
+
   componentDidMount() {
     super.componentDidMount();
     AutorService.getAll().then(response => {
       this.update({ autores: response.data });
+    });
+    GenreService.getAll().then(response => {
+      this.update({ generos: response.data });
+    });
+    PublisherService.getAll().then(response => {
+      this.update({ editoras: response.data });
     });
   }
 
@@ -44,17 +56,17 @@ class BookForm extends _Page {
     const { getFieldDecorator } = form;
     return (
       <>
-        <Header title="Editar Livro" />
+        <Header title="Livro" />
         <div className="bodycreate">
           <Card
-            title="Cadastre o Livro. Lembre-se de preencher todos os dados pedidos."
+            title="Cadastre o livro. Lembre-se de preencher todos os dados pedidos."
             className="cardcreate"
           >
             <div className="headercreate">
               {/*onSubmit={aqui} funcao para submissao do bd */}
               <Form onSubmit={this.handleSubmit} layout="inline">
                 <Form.Item>
-                  {getFieldDecorator("books_title", {
+                  {getFieldDecorator("book_title", {
                     rules: [
                       { required: true, message: "Nome do livro" },
                       { max: 30, message: "maximo de 30 caracteres" }
@@ -62,9 +74,9 @@ class BookForm extends _Page {
                   })}
                   <Input
                     prefix={<Icon type="read" />}
-                    placeholder="Nome do Livro"
-                    name="book_name"
-                    value={this.state.model.books_title}
+                    placeholder="Titulo do livro"
+                    name="book_title"
+                    value={this.state.model.book_title}
                     onChange={e => this._handleInputChange(e, this.state.model)}
                   />
                   {getFieldDecorator("release_year", {
@@ -83,28 +95,86 @@ class BookForm extends _Page {
                     onChange={e => this._handleInputChange(e, this.state.model)}
                   />
                 </Form.Item>
-                <Form.Item />
-                <Form.Item>
-                  {getFieldDecorator("nationality", {
+                 <Form.Item>
+                  {getFieldDecorator("id_autor", {
                     rules: [
-                      { required: true, message: "Insira a nacionalidade" },
-                      { max: 30, message: "maximo de 30 caracteres" }
+                      { required: true, message: "Obrigatorio selecionar" }
                     ]
                   })}
-                  <Input
-                    prefix={<Icon type="form" />}
-                    placeholder="Nacionalidade"
-                    name="nationality"
-                    value={this.state.model.nationality}
-                    onChange={e => this._handleInputChange(e, this.state.model)}
-                  />
+
+                  <Select
+                    value={this.state.model.id_autor}
+                    onChange={value =>
+                      this._handleInputChange(
+                        { target: { name: "id_autor", value } },
+                        this.state.model
+                      )
+                    }
+                  >
+                    {this.state.autores.map(autor => {
+                      return (
+                        <Option value={autor.id_autor}>
+                          {autor.autor_name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+                <Form.Item>
+                  {getFieldDecorator("id_genre", {
+                    rules: [
+                      { required: true, message: "Obrigatorio selecionar" }
+                    ]
+                  })}
+
+                  <Select
+                    value={this.state.model.id_genre}
+                    onChange={value =>
+                      this._handleInputChange(
+                        { target: { name: "id_genre", value } },
+                        this.state.model
+                      )
+                    }
+                  >
+                    {this.state.generos.map(genero => {
+                      return (
+                        <Option value={genero.id_genre}>
+                          {genero.literary_genre}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+                <Form.Item>
+                  {getFieldDecorator("id_publisher", {
+                    rules: [
+                      { required: true, message: "Obrigatorio selecionar" }
+                    ]
+                  })}
+
+                  <Select
+                    value={this.state.model.id_publisher}
+                    onChange={value =>
+                      this._handleInputChange(
+                        { target: { name: "id_publisher", value } },
+                        this.state.model
+                      )
+                    }
+                  >
+                    {this.state.editoras.map(editora => {
+                      return (
+                        <Option value={editora.id_publisher}>
+                          {editora.publisher_name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
                 </Form.Item>
                 <Form.Item>
                   <Button type="primary" htmlType="submit">
                     Salvar
                   </Button>
                 </Form.Item>
-
               </Form>
             </div>
           </Card>
