@@ -14,6 +14,8 @@ import PublisherForm from '../pages/Publisher/form';
 import PublisherList from '../pages/Publisher';
 import GenreList from '../pages/Genre';
 import GenreForm from '../pages/Genre/form';
+import BookForm from '../pages/Book/form';
+import BookList from '../pages/Book';
 
 const PrivateRoute = (props) => (
   AuthService.isAuthenticated()
@@ -33,6 +35,10 @@ const Routes = () => (
       <Route path={'/publisher'} component={PublisherList}/>
       <Route path={'/genre/:id'} component={GenreForm}/>
       <Route path={'/genre'} component={GenreList}/>
+      <Route path={'/book/:id'} component={BookForm}/>
+      <Route path={'/book'} component={BookList}/>
+
+
 
 
 

@@ -31,12 +31,12 @@ export default class GenreList extends _Page {
       render: genre => (
         <>
           <NavLink
-            className="ant-btn"
+            className="ant-btn" style={{margin:"1%"}}
             to={"/genre/" + genre.id_publisher}
           >
             <span>Editar</span>
           </NavLink>
-          <Button>Remover</Button>
+          <Button style={{margin:"1%"}}>Remover</Button>
         </>
       )
     }
@@ -54,7 +54,7 @@ export default class GenreList extends _Page {
       <>
         <Header title="Generos" />
         <Content>
-          <NavLink className="ant-btn ant-btn-primary" to={"/genre/0"}>
+          <NavLink className="ant-btn ant-btn-primary" style={{margin:"1%"}} to={"/genre/0"}>
             <span>Adicionar</span>
           </NavLink>
           <Table dataSource={this.state.genres} columns={this.columns} />

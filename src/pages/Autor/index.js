@@ -24,21 +24,36 @@ export default class AutorList extends _Page {
       key: "autor_name"
     },
     {
+      title: "Ano de nascimento",
+      dataIndex: "date_birth",
+      key: "date_birth"
+    },
+    {
+      title: "Genero",
+      dataIndex: "sex_genre",
+      key: "sex_genre"
+    },
+    {
       title: "Action",
       key: "operation",
       fixed: "right",
       width: 100,
       render: autor => (
         <>
-          <NavLink className="ant-btn" to={"/autor/" + autor.id_autor}>
+          <NavLink className="ant-btn" style={{margin:"1%"}} to={"/autor/" + autor.id_autor}>
             <span>Editar</span>
           </NavLink>
-          <Button>Remover</Button>
+          <Button style={{margin:"1%"}}>Remover</Button>
         </>
       )
     }
   ];
 
+  deleteautor(id){
+    AutorService.delete(id).then( response =>{
+      this.update({autores: response.data});
+    });
+  }
   componentDidMount() {
     super.componentDidMount();
     AutorService.getAll().then(response => {
@@ -51,7 +66,7 @@ export default class AutorList extends _Page {
       <>
         <Header title="Autores" />
         <Content>
-          <NavLink className="ant-btn ant-btn-primary" to={"/autor/0"}>
+          <NavLink className="ant-btn ant-btn-primary" style={{margin:"1%"}} to={"/autor/0"}>
             <span>Adicionar</span>
           </NavLink>
           <Table dataSource={this.state.autores} columns={this.columns} />

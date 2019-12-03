@@ -31,12 +31,12 @@ export default class PublisherList extends _Page {
       render: publisher => (
         <>
           <NavLink
-            className="ant-btn"
+            className="ant-btn" style={{margin:"2%"}}
             to={"/publisher/" + publisher.id_publisher}
           >
             <span>Editar</span>
           </NavLink>
-          <Button>Remover</Button>
+          <Button style={{margin:"1%"}}>Remover</Button>
         </>
       )
     }
@@ -54,7 +54,7 @@ export default class PublisherList extends _Page {
       <>
         <Header title="Editoras" />
         <Content>
-          <NavLink className="ant-btn ant-btn-primary" to={"/publisher/0"}>
+          <NavLink className="ant-btn ant-btn-primary" style={{margin:"1%"}} to={"/publisher/0"}>
             <span>Adicionar</span>
           </NavLink>
           <Table dataSource={this.state.publishers} columns={this.columns} />

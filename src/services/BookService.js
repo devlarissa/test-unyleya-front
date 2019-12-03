@@ -1,25 +1,38 @@
-import API from './api';
+import API from "./api";
 
 export default class BookService {
-
-  async getAll(params) {
-    return await API.get(`/books`, {params});
+  static async getAll(params) {
+    return await API.get(`/book`, { params });
   }
 
-  async get(id) {
-    return await API.get(`/books/${id}`);
+  static async get(id) {
+    return await API.get(`/book/${id}`);
   }
 
-  async create(data) {
-    return await API.post(`/books`, data);
+  static async create(data) {
+    return await API.post(`/book`, data);
   }
 
-  async update(id, data) {
-    return await API.put(`/books/${id}`, data);
+  static async update(id, data) {
+    return await API.put(`/book/${id}`, data);
   }
 
-  async delete(id) {
-    return await API.delete(`/books/${id}`);
+  static async delete(id) {
+    return await API.delete(`/book/${id}`);
   }
 
+  // identifica se precisa de uptade ou create
+  static async save(data, idAttribute = "id") {
+    const id = data[idAttribute];
+
+    let url = "/book";
+    let method = "post";
+
+    if (id) {
+      url += `/${id}`;
+      method = "put";
+    }
+
+    return await API[method](url, data);
+  }
 }

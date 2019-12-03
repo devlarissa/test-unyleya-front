@@ -1,36 +1,41 @@
 import React from "react";
-import {Input,notification,Form,Select,Card,Button,Icon} from "antd";
-import "./styles.css";
+import {Input,notification,Form,Card,Button,Icon} from "antd";
 import PropTypes from "prop-types";
 import Header from "../../components/Header";
 import _Page from "../_Page";
+import BookService from "../../services/BookService";
 import AutorService from "../../services/AutorService";
 
-const { Option } = Select;
-
-class AutorForm extends _Page {
+class BookForm extends _Page {
   static propTypes = {
     form: PropTypes.any.isRequired
   };
 
-  service = AutorService;
+  service = BookService;
   state = {
-    model: {}
+    model: {},
+    autores: []
   };
 
   componentWillMount() {
     this.getModel();
   }
+  componentDidMount() {
+    super.componentDidMount();
+    AutorService.getAll().then(response => {
+      this.update({ autores: response.data });
+    });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
-    AutorService.save(this.state.model, "id_autor").then(response => {
+    BookService.save(this.state.model, "id_book").then(response => {
       this.update({ model: response.data });
       notification.open({
         message: "Sucesso!",
         description: "Suas alterações foram salvas com sucesso."
       });
-      this.props.history.push("/autor")
+      this.props.history.push("/book")
     });
   };
 
@@ -39,30 +44,30 @@ class AutorForm extends _Page {
     const { getFieldDecorator } = form;
     return (
       <>
-        <Header title="Editar Autor" />
+        <Header title="Editar Livro" />
         <div className="bodycreate">
           <Card
-            title="Cadastre o autor. Lembre-se de preencher todos os dados pedidos."
+            title="Cadastre o Livro. Lembre-se de preencher todos os dados pedidos."
             className="cardcreate"
           >
             <div className="headercreate">
               {/*onSubmit={aqui} funcao para submissao do bd */}
               <Form onSubmit={this.handleSubmit} layout="inline">
                 <Form.Item>
-                  {getFieldDecorator("autor_name", {
+                  {getFieldDecorator("books_title", {
                     rules: [
-                      { required: true, message: "Nome do Autor" },
+                      { required: true, message: "Nome do livro" },
                       { max: 30, message: "maximo de 30 caracteres" }
                     ]
                   })}
                   <Input
-                    prefix={<Icon type="user" />}
-                    placeholder="Nome do autor"
-                    name="autor_name"
-                    value={this.state.model.autor_name}
+                    prefix={<Icon type="read" />}
+                    placeholder="Nome do Livro"
+                    name="book_name"
+                    value={this.state.model.books_title}
                     onChange={e => this._handleInputChange(e, this.state.model)}
                   />
-                  {getFieldDecorator("date_birth", {
+                  {getFieldDecorator("release_year", {
                     rules: [
                       { required: true, message: "Insira o ano de lançamento" },
                       { type: "number", message: "Apenas formato numerico" },
@@ -73,30 +78,10 @@ class AutorForm extends _Page {
                   <Input
                     prefix={<Icon type="calendar" />}
                     placeholder="Ano de lançamento"
-                    name="date_birth"
-                    value={this.state.model.date_birth}
+                    name="release_year"
+                    value={this.state.model.release_year}
                     onChange={e => this._handleInputChange(e, this.state.model)}
                   />
-                </Form.Item>
-                <Form.Item>
-                  {getFieldDecorator("sex_genre", {
-                    rules: [
-                      { required: true, message: "Obrigatorio selecionar" }
-                    ]
-                  })}
-                  <Select
-                    value={this.state.model.sex_genre}
-                    onChange={value =>
-                      this._handleInputChange(
-                        { target: { name: "sex_genre", value } },
-                        this.state.model
-                      )
-                    }
-                  >
-                    <Option value="Female">Feminino</Option>
-                    <Option value="Male">Masculino</Option>
-                    <Option value="Other">Outro</Option>
-                  </Select>
                 </Form.Item>
                 <Form.Item />
                 <Form.Item>
@@ -119,6 +104,7 @@ class AutorForm extends _Page {
                     Salvar
                   </Button>
                 </Form.Item>
+
               </Form>
             </div>
           </Card>
@@ -128,4 +114,4 @@ class AutorForm extends _Page {
   }
 }
 
-export default Form.create({ name: "AutorForm" })(AutorForm);
+export default Form.create({ name: "BookForm" })(BookForm);

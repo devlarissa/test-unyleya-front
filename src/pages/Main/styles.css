@@ -9,17 +9,16 @@
   width: 200px;
 }
 
-.bodybook{
+.bodymain{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 
 }
 
-.cardbook{
-  min-width: 550px;
-  max-width: 550px;
+.cardmain{
+  width: 11%;
   margin-left: 2%;
   margin-top: 2%;
   margin-right: 2%;
@@ -30,7 +29,7 @@
 
 }
 @media only screen and (max-width: 500px){
-  .cardbook{
+  .cardmain{
     min-width: 310px;
     max-width: 310px;
     border: solid 3px pink;
