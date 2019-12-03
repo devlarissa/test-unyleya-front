@@ -40,10 +40,8 @@ export default class PublisherList extends _Page {
           <Button
             onClick={e => {
               e.preventDefault();
-              if (window.confirm("Deseja remover o registro?")) {
-                PublisherService.delete(publisher.id_publisher).then(response => {
-                  this.update({ books: response.data });
-                });
+              if (window.confirm("Deseja apagar esse registro? Registros vinculados a livros não será possivel apaga-los.")) {
+                PublisherService.delete(publisher.id_publisher)
               }
             }}
           >

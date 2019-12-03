@@ -14,13 +14,13 @@ class Login extends _Page {
           <Card className="card">
           <div className="header">
           <Avatar src={Logo} shape="square" style={{width:"30%", height:"30%"}}/>
-          <p>Olá pessoinha! Bem-vindo ao Booklist, o melhor gerenciador de livros.</p>
+          <p>Olá pessoinha! Bem-vindo ao Booklist, estamos em construição, login indisponivel, basta clicar em login ou cadastrar para entrar.</p>
           </div>
             <Input className="input" placeholder="E-mail" prefix={<Icon type="user"/>} />
             <Input className="input" placeholder="senha" prefix={<Icon type="lock" />} />
             <div className="divbutton">
-              <Button className="button" icon="like"> LOGAR </Button>
-              <Button className="button"> CADASTRAR </Button>
+              <Button href="/home" className="button" icon="like"> LOGAR </Button>
+              <Button href="/home" className="button"> CADASTRAR </Button>
             </div>
           </Card>
         </div>

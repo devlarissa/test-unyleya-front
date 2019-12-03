@@ -5,7 +5,6 @@ import Content from "../../components/Content";
 import Header from "../../components/Header";
 import BookService from "../../services/BookService";
 import { NavLink } from "react-router-dom";
-import AutorService from "../../services/AutorService";
 
 export default class BookList extends _Page {
   state = {
@@ -63,9 +62,11 @@ export default class BookList extends _Page {
             onClick={e => {
               e.preventDefault();
               if (window.confirm("Deseja remover o registro?")) {
-                BookService.delete(book.id_book).then(response => {
-                  this.update({ books: response.data });
-                });
+                BookService.delete(book.id_book).then(
+                  BookService.getAll().then(response => {
+      this.update({ books: response.data })
+    })
+                )
               }
             }}
           >
@@ -81,15 +82,9 @@ export default class BookList extends _Page {
     BookService.getAll().then(response => {
       this.update({ books: response.data });
     });
-    AutorService.get(1).then(response => {
-      this.update({
-        autor: response.date
-      });
-    });
   }
 
   render() {
-    console.log(this.state.autor)
     return (
       <>
         <Header title="Livros" />

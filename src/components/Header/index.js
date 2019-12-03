@@ -8,7 +8,7 @@ class Header extends React.Component {
     return <PageHeader className="bodyheader" ghost={false} {...this.props}>
       <NavLink
             className="ant-btn" style={{border:"0"}}
-            to={"/"}
+            to={"/home"}
           >
             <span>Home</span>
           </NavLink>
